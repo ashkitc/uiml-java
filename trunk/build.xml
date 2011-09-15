@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project name="UIML" default="all" basedir=".">
+	<property name="src.dir" value="${basedir}/src"/>
+	<property name="lib.dir" value="${basedir}/lib"/>
+	<property name="build.dir" value="${basedir}/out"/>
+	<property name="build.jar" value="${basedir}/uiml.jar"/>
+	
+	<property name="src.test.dir" value="${basedir}/test"/>
+	<property name="build.test.dir" value="${basedir}/out_test"/>
+	
+
+	<target name="clean">
+		<delete dir="${build.dir}" failonerror="false" />
+		<delete dir="${build.test.dir}" failonerror="false" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${build.dir}"/>
+		<javac srcdir="${src.dir}" 
+			   destdir="${build.dir}" 
+			   debug="false" 
+			   optimize="true" 
+			   target="1.3"
+			   source="1.3"
+			   nowarn="false"
+			   fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+
+		<copy todir="${build.dir}">
+			<fileset dir="${src.dir}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="build" depends="compile">
+	</target>
+	
+	<target name="test" depends="build">
+		<mkdir dir="${build.test.dir}"/>
+		<!-- compile tests -->
+		<javac srcdir="${src.test.dir}" 
+			   destdir="${build.test.dir}" 
+			   debug="false" 
+			   optimize="true" 
+			   target="1.3"
+			   source="1.3"
+			   nowarn="false"
+			   fork="true">
+			<classpath>
+				<pathelement path="${build.dir}"/>
+				<fileset dir="${lib.dir}">
+					<include name="*.jar"/>
+				</fileset>		
+			</classpath>
+		</javac>
+
+		<copy todir="${build.test.dir}">
+			<fileset dir="${src.test.dir}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		
+		<!-- run junit tests -->	
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath>
+				<pathelement path="${build.test.dir}"/>
+				<pathelement path="${build.dir}"/>
+				<fileset dir="${lib.dir}">
+					<include name="*.jar"/>
+				</fileset>							
+			</classpath>
+		
+			<formatter type="plain"/>
+		
+			<batchtest fork="yes" todir="${build.test.dir}">
+				<fileset dir="${src.test.dir}">
+					<include name="**/*Test*.java"/>
+				</fileset>
+			</batchtest>
+		</junit>
+	
+	</target>
+
+	<target name="jar"  depends="compile, test">
+		<delete file="${build.jar}"/>
+
+		<jar destfile="${build.jar}">
+			<fileset dir="${build.dir}"/>
+			<manifest>
+				<attribute name="Specification-Title" value="User Interface Markup Language for Java using SWT"/>
+				<attribute name="Specification-Version" value="1.0"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="all" depends="jar"/>
+
+</project>

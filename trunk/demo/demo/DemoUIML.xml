@@ -1,0 +1,45 @@
+<layout columns="1" width="500" align="FILL" valign="FILL">
+	<tabs align="FILL" valign="FILL">
+		<tab name="Components" align="FILL" valign="FILL" columns="5">
+			<label text="date:" align="BEGINING" valign="CENTER"/>
+			<datetime id="dateTimeComponent" type="date" align="BEGINING" valign="CENTER" height="20"/>
+		    <button id="buttonComponent" text="--&gt;" height="20" align="BEGINING" valign="CENTER"/>
+		    <label id="labelComponent" text="milliseconds:" align="BEGINING" valign="CENTER"/>
+			<text id="textComponent" text="" width="100" align="BEGINING" valign="CENTER" readonly="true" />
+		
+			<table id="tableComponent" fullselection="true" colspan="5" height="200" align="FILL" valign="FILL"/>
+			
+			<label text="" colspan="4"/>
+			<button text="do :)" height="20" align="END" valign="CENTER"/>
+		</tab>
+
+		<tab name="Container" align="FILL" valign="FILL" columns="1">
+			<container height="80" align="FILL" valign="BEGINING" columns="2">
+			    <label text="text:" align="BEGINING" valign="CENTER"/>
+				<text text="text" width="100" align="BEGINING" valign="CENTER"/>
+				
+			    <label text="combo:" align="BEGINING" valign="CENTER"/>
+				<combo id="comboComponent" width="100" align="BEGINING" valign="CENTER" readonly="true"/>	
+				
+			    <label text="spinner:" align="BEGINING" valign="CENTER"/>
+				<spinner id="spinnerComponent" width="100" align="BEGINING" valign="CENTER"/>			
+			</container>
+			
+			<text text="wrapped multiline with vertical scroll" width="100" align="FILL" valign="FILL"  multi="true" wrap="true" vscroll="true"/>
+
+			<button text="button" height="20" align="END" valign="CENTER"/>
+		</tab>
+				
+		<tab name="Splitter" align="FILL" valign="FILL">
+			<splitter horizontal="40" align="FILL" valign="FILL">
+				<container align="FILL" valign="FILL">
+				    <list id="listComponent" align="FILL" valign="FILL"/>
+				</container>
+				<container align="FILL" valign="FILL">
+				    <text text="wrapped multiline with vertical and horisontal scroll in splitter" width="100" align="FILL" valign="FILL"  multi="true" vscroll="true" hscroll="true" align="FILL" valign="FILL"/>				    	
+				</container>				
+			</splitter>
+		</tab>
+
+	</tabs>
+</layout>
