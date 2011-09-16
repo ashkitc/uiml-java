@@ -290,7 +290,7 @@ public class UIMLFactory {
 	 * Defines button component
 	 * 
 	 * <pre>
-	 * <label id="javaName" text="buttonText"/>
+	 * <label id="javaName" text="label text"/>
 	 * </pre>
 	 * 
 	 * @param components
@@ -484,7 +484,7 @@ public class UIMLFactory {
 
 	// <splitter horizontal vertical/> --sub tags
 	/**
-	 * Defines Spinner component with predefined percentage ratio.
+	 * Defines Splitter component with predefined percentage ratio.
 	 * 
 	 * <pre>
 	 * <splitter id="javaName" horizontal="30" / vertical="30" />

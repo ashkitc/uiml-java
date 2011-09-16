@@ -113,7 +113,7 @@ public class DemoUIML extends SelectionAdapter {
 	public static final Shell shell = new Shell(display);
 
 	public static void main(String[] args) {
-		shell.setText("PBM");
+		shell.setText("DemoUIML");
 		new DemoUIML(shell);
 
 		shell.pack();
